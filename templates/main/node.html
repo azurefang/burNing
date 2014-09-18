@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="box">
+    <div class="cell">
+    {{ node.name }}
+    {{ node.description }}
+    </div>
+
+
+
+
+    {% for post in posts %}
+    <div class="post cell">
+        <div class="avatar"></div>
+        <div class="title">
+            <a href="/post/{{ post.id }}">{{ post.title }}</a>
+        </div>
+        <div class="meta">
+        <strong>
+        <a href="">{{ post.user.username }}</a>
+        </strong>
+        •
+        {% include "time.html" %}
+        {% include "last_reply.html" %}
+        <span class="reply pull-right">
+          {% set reply_count = post.replies.count() %}
+          {% if reply_count > 0%}
+          {{ reply_count  }}
+          {% endif %}
+        </span>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}
+<form action="" method="post">
+    {{ xsrf_form_html() }}
+    {% for item in form %}
+    {{ item.label() }}
+    {{ item() }}
+    {% if item.errors %}
+    {% for error in item.errors %}
+    {{ error }}
+    {% endfor %}
+    {% endif %}
+    {% endfor %}
+
+</form>
+
+
+{% block sidebar %}
+ss
+{% endblock %}

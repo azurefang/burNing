@@ -1,0 +1,19 @@
+        <span class="time">
+        {% set time = current - post.created_time %}
+        {% set days = time.days %}
+        {% set hours = (time.total_seconds() - 24*days*3600)//3600 %}
+        {% set mins = (time.total_seconds() - 24*days*3600 - hours*3600)//60 %}
+        {% if time.days > 0 %}
+        {{ days }} 天{% else %}
+        {% set hours = time.total_seconds() //3600 %}
+        {% set mins = (time.total_seconds() - hours*3600)//60 %}
+        {% if  hours > 0 %}
+        {{ hours|int }} 小时
+        {% endif %}
+        {% if mins > 0 %}
+        {{ mins|int }}
+        {% else %}
+        不到1
+        {% endif %}
+        分钟{% endif %}前
+        </span>

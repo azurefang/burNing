@@ -1,0 +1,5 @@
+        {% if post.last_reply_by %}
+        •
+        <span class="last-reply">最后回复来自</span>
+        {{ post.last_reply_by.username }}
+        {% endif %}
